@@ -17,8 +17,8 @@ const client = new Client({
 })
 
 client.once(Events.ClientReady, c => {
-    console.log(`Ready! Logged in as ${c.user.tag}`);
-});
+    console.log(`Ready! Logged in as ${c.user.tag}`)
+})
 
 client.on(Events.MessageCreate, async message => {
     if (!message.content.startsWith('!play ')) return
@@ -34,13 +34,13 @@ client.on(Events.MessageCreate, async message => {
     })
 
     voiceConnection.on('stateChange', (oldState, newState) => {
-        console.log(`[${channel.guild.name}-${channel.id}] Connection state changed from ${oldState.status} to ${newState.status}`);
+        console.log(`[${channel.guild.name}-${channel.id}] Connection state changed from ${oldState.status} to ${newState.status}`)
     })
 
     const stream = ytdl(url, { filter: 'audioonly' })
     const player = createAudioPlayer()
     player.on('stateChange', (oldState, newState) => {
-        console.log(`[${channel.guild.name}-${channel.id}] Player state changed from ${oldState.status} to ${newState.status}`);
+        console.log(`[${channel.guild.name}-${channel.id}] Player state changed from ${oldState.status} to ${newState.status}`)
     })
     const res = createAudioResource(stream)
     voiceConnection.subscribe(player)
